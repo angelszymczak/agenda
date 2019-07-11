@@ -1,52 +1,50 @@
-# Agenda
+# Welcome to agenda sample
 
-This is a test platform that exposes the CRUD for an agenda of contacts and activities in the Json API format.
+This is a test platform that exposes the **CRUD** for an agenda of contacts and activities in the **Json API** format.
 
-Contact Definition
-- First Name (String)
-- Last Name (String)
-- Cell Phone (String)
-- Zip Code (Number)
+## Resources
+- Contact Definition
+  >First Name (String)
+  >Last Name (String)
+  >Cell Phone (String)
+  >Zip Code (Number)
 
-Activity Contact
-- Contact ID (Number)
-- Description (String)
+- Activity Contact
+  >Contact ID (Number)
+  >Description (String)
 
-Required endpoints:
-* Contact
-- GET     /contacts/
-- GET     /contacts/:id
-- POST    /contacts/
-- PUT     /contacts/:id
-- DELETE
+## Endpoints:
 
-* Activity
-- GET     /contacts/:id/activities
-- POST    /contacts/:id/activities
-- PUT     /contacts/:id/activities/:id
-- DELETE
-
-* All fields are mandatory.
-* All records must have fields `created_at` y `updated_at`.
-* Content type is "application/json"
+|         |Contacts      |Activities                          |                          
+|---------|--------------|------------------------------------| 
+|`GET`    |/contacts/    |/contacts/:contact_id/activities    |
+|`GET`    |/contacts/:id |                                    |
+|`POST`   |/contacts/    |/contacts/:contact_id/activities    |
+|`PUT`    |/contacts/:id |/contacts/:contact_id/activities/:id|
+|`DELETE` |/contacts/:id |/contacts/:contact_id/activities/:id|
 
 
-* Ruby version 2.4.1, Rails version 5.2
+* Ruby 2.4.1, Rails 5.2
 
 * This application is configured to run with Postgresql but you can change the database adapter for your convenience.
-bundle install
 
-* Database initialization
-bin/rake db:create;
-bin/rake db:migrate;
-bin/rake db:seed;
+### Running
+* Prepare
+   ```bash
+    $ bundle exec rake db:create
+    $ bundle exec rake db:migrate
+    $ bundle exec rake db:seed
+  ```
 
-* How to run
-Finally, start app with
-bin/rails s
+* Run
+   ```bash
+    $ bundle exec rails s
+  ```
 
-* How to run the test suite
-bin/rspec
+* Test
+  ```bash
+    $ bundle exec rspec
+    $ bundle exec rubocop
+  ```
 
-* You can play with Postman
-docs for endpoints is here
+* You can play with [Postman](https://www.getpostman.com), docs for endpoints is [here](https://documenter.getpostman.com/view/2705725/SVSGPB2M?version=latest)
