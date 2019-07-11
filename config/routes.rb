@@ -3,7 +3,9 @@
 Rails.application.routes.draw do
   scope module: :api do
     scope module: :v1 do
-      resources :contacts
+      resources :contacts do
+        resources :activities, only: %i[index create update destroy]
+      end
     end
   end
 end
