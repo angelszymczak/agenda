@@ -8,6 +8,12 @@ class JsonWebToken
       JWT.encode(payload, secret_key)
     end
 
+    def decode(token)
+      JWT.decode(token, secret_key)[0].with_indifferent_access
+    rescue JWT::DecodeError => e
+      raise Api::V1::Concerns::ExceptionHandler::InvalidToken, "#{Message.invalid_token} #{e.message}"
+    end
+
     private
 
     def expiration_date
