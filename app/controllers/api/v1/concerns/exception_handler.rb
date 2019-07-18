@@ -7,18 +7,37 @@ module Api
       module ExceptionHandler
         extend ActiveSupport::Concern
 
+        class AuthenticationError < StandardError; end
+        class MissingToken < StandardError; end
+        class InvalidToken < StandardError; end
+
         included do
-          rescue_from Exception do |e|
-            json_response({ error: e.message }, :internal_error)
-          end
+          rescue_from Exception, with: :internal_error
 
-          rescue_from ActiveRecord::RecordNotFound do |e|
-            json_response({ error: e.message }, :not_found)
-          end
+          rescue_from ActiveRecord::RecordNotFound, with: :not_found
+          rescue_from ActiveRecord::RecordInvalid, with: :unprocessable_entity
 
-          rescue_from ActiveRecord::RecordInvalid do |e|
-            json_response({ error: e.message }, :unprocessable_entity)
-          end
+          rescue_from ExceptionHandler::AuthenticationError, with: :unauthorized_request
+          rescue_from ExceptionHandler::MissingToken, with: :unprocessable_entity
+          rescue_from ExceptionHandler::InvalidToken, with: :unprocessable_entity
+        end
+
+        private
+
+        def unprocessable_entity(errors)
+          json_response({ errors: errors.message }, :unprocessable_entity)
+        end
+
+        def not_found(errors)
+          json_response({ errors: errors.message }, :not_found)
+        end
+
+        def internal_error(errors)
+          json_response({ errors: errors.message }, :internal_error)
+        end
+
+        def unauthorized_request(errors)
+          json_response({ errors: errors.message }, :unauthorized_request)
         end
       end
     end
