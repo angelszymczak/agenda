@@ -37,5 +37,7 @@ module Agenda
     config.middleware.use Rack::MethodOverride
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
+
+    config.eager_load_paths << Rails.root.join('lib')
   end
 end

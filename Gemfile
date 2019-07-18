@@ -33,6 +33,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'active_model_serializers'
 gem 'activeadmin'
+gem 'jwt'
+gem 'simple_command'
 gem 'telephone_number'
 
 group :development, :test do
