@@ -37,7 +37,7 @@ module Api
         end
 
         def unauthorized_request(errors)
-          json_response({ errors: errors.message }, :unauthorized_request)
+          json_response({ errors: errors.message }, :unauthorized)
         end
       end
     end
