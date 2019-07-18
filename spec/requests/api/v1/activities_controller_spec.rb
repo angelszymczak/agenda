@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Api::V1::Activity', type: :request do
+RSpec.describe Api::V1::ActivitiesController, type: :request do
   subject(:payload) { response.parsed_body.with_indifferent_access[:data] }
 
   let(:error_payload) { response.parsed_body.with_indifferent_access }

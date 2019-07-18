@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Api::V1::Contact', type: :request do
+RSpec.describe Api::V1::ContactsController, type: :request do
   subject(:payload) { response.parsed_body.with_indifferent_access[:data] }
 
   let(:error_payload) { response.parsed_body.with_indifferent_access }
