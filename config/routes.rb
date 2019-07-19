@@ -7,6 +7,10 @@ Rails.application.routes.draw do
       resources :contacts do
         resources :activities, only: %i[index create update destroy]
       end
+
+      scope module: :auth do
+        post :signup, to: 'registration#create'
+      end
     end
   end
 end
