@@ -15,13 +15,13 @@ This is a test platform that exposes the **CRUD** for an agenda of contacts and 
 
 ## Endpoints:
 
-|         |Contacts      |Activities                          |                          
-|---------|--------------|------------------------------------| 
-|`GET`    |/contacts/    |/contacts/:contact_id/activities    |
-|`GET`    |/contacts/:id |                                    |
-|`POST`   |/contacts/    |/contacts/:contact_id/activities    |
-|`PUT`    |/contacts/:id |/contacts/:contact_id/activities/:id|
-|`DELETE` |/contacts/:id |/contacts/:contact_id/activities/:id|
+|         |Contacts      |Activities                          |Registration|Authentication|
+|---------|--------------|------------------------------------|------------|--------------|
+|`GET`    |/contacts/    |/contacts/:contact_id/activities    |            |              |
+|`GET`    |/contacts/:id |                                    |            |              |
+|`POST`   |/contacts/    |/contacts/:contact_id/activities    |/sign_up    |/sign_in      |
+|`PUT`    |/contacts/:id |/contacts/:contact_id/activities/:id|            |              |
+|`DELETE` |/contacts/:id |/contacts/:contact_id/activities/:id|            |              |
 
 
 * Ruby 2.4.1, Rails 5.2
