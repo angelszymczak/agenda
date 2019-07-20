@@ -18,7 +18,7 @@ class AuthenticateUser # rubocop:disable Style/Documentation
 
   def user
     user = User.find_by(email: email)
-    return user if user.present? && user.authenticate(password)
+    return user if user.try(:authenticate, password)
 
     raise Api::V1::Concerns::ExceptionHandler::AuthenticationError, Message.invalid_credentials
   end

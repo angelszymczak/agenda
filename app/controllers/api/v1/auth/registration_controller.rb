@@ -7,9 +7,6 @@ module Api
         skip_before_action :authorize, only: :create
 
         def create
-          user = User.create!(registration_params)
-          token = AuthenticateUser.new(user.email, user.password).call.result
-
           json_response({ message: Message.account_created, token: token }, :created)
         end
 
@@ -17,6 +14,14 @@ module Api
 
         def registration_params
           params.require(:registration).permit(:email, :password, :password_confirmation)
+        end
+
+        def token
+          @token ||= AuthenticateUser.new(user.email, user.password).call.result
+        end
+
+        def user
+          @user ||= User.create!(registration_params)
         end
       end
     end
