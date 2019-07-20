@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     module Concerns
-      module Authorization
+      module Authorization # rubocop:disable Style/Documentation
         extend ActiveSupport::Concern
 
         included do

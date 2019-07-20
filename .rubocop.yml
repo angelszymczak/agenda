@@ -30,3 +30,12 @@ Metrics/BlockLength:
 AllCops:
   Exclude:
     - db/**/*rb
+
+RSpec/AnyInstance:
+  Enabled: false
+RSpec/MessageChain:
+  Enabled: false
+RSpec/MultipleExpectations:
+  Enabled: false
+RSpec/NamedSubject:
+  Enabled: false

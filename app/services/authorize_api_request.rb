@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-# Private Request Handler
-class AuthorizeApiRequest
+class AuthorizeApiRequest # rubocop:disable Style/Documentation
   prepend SimpleCommand
 
   def initialize(headers)

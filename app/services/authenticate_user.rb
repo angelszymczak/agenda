@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-# Private Request Handler
-class AuthenticateUser
+class AuthenticateUser # rubocop:disable Style/Documentation
   prepend SimpleCommand
 
   def initialize(email, password)
