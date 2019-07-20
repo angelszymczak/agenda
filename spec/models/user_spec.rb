@@ -3,15 +3,17 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  describe 'database validations' do
+    it { is_expected.to have_db_column(:email).of_type(:string) }
+    it { is_expected.to have_db_column(:password_digest).of_type(:string) }
+  end
+
   describe 'model validations' do
     it { is_expected.to validate_presence_of(:email) }
     it { is_expected.to validate_presence_of(:password) }
     it { is_expected.to validate_presence_of(:password_confirmation) }
-  end
 
-  describe 'database validations' do
-    it { is_expected.to have_db_column(:email).of_type(:string) }
-    it { is_expected.to have_db_column(:password_digest).of_type(:string) }
+    it { expect(build(:user)).to validate_uniqueness_of(:email) }
   end
 
   describe 'when factory create a valid user' do
