@@ -5,13 +5,13 @@ require 'rails_helper'
 RSpec.describe Api::V1::ContactsController, type: :request do
   subject(:payload) { response.parsed_body.with_indifferent_access[:data] }
 
-  let(:error_payload) { response.parsed_body.with_indifferent_access }
+  let(:headers) { valid_headers }
 
   describe 'GET /contacts' do
     context 'when have contacts' do
       let!(:samples) { create_list(:contact, 5) }
 
-      before { get '/contacts' }
+      before { get '/contacts', headers: headers }
 
       it { expect(response).to have_http_status(:ok) }
 
@@ -23,7 +23,7 @@ RSpec.describe Api::V1::ContactsController, type: :request do
     end
 
     context 'when have not contacts' do
-      before { get '/contacts' }
+      before { get '/contacts', headers: headers }
 
       it { expect(response).to have_http_status(:ok) }
 
@@ -35,7 +35,7 @@ RSpec.describe Api::V1::ContactsController, type: :request do
     context 'when sample exists' do
       let!(:sample) { create(:contact) }
 
-      before { get "/contacts/#{sample.id}" }
+      before { get "/contacts/#{sample.id}", headers: headers }
 
       it { expect(response).to have_http_status(:ok) }
 
@@ -47,7 +47,7 @@ RSpec.describe Api::V1::ContactsController, type: :request do
     end
 
     context 'when sample not exists' do
-      before { get '/contacts/9999' }
+      before { get '/contacts/9999', headers: headers }
 
       it { expect(response).to have_http_status(:not_found) }
     end
@@ -55,7 +55,7 @@ RSpec.describe Api::V1::ContactsController, type: :request do
 
   describe 'POST /contacts' do
     context 'when send valid params' do
-      before { post '/contacts', params: { contact: contact_params } }
+      before { post '/contacts', params: { contact: contact_params }.to_json, headers: headers }
 
       let(:contact_params) { attributes_for(:contact) }
 
@@ -76,7 +76,7 @@ RSpec.describe Api::V1::ContactsController, type: :request do
     end
 
     context 'when send invalid params' do
-      before { post '/contacts', params: { contact: { first_name: '' } } }
+      before { post '/contacts', params: { contact: { first_name: '' } }.to_json, headers: headers }
 
       it { expect(response).to have_http_status(:unprocessable_entity) }
     end
@@ -86,7 +86,7 @@ RSpec.describe Api::V1::ContactsController, type: :request do
     let!(:sample) { create(:contact) }
 
     context 'when send valid params' do
-      before { put "/contacts/#{sample.id}", params: { contact: update_params } }
+      before { put "/contacts/#{sample.id}", params: { contact: update_params }.to_json, headers: headers }
 
       let(:update_params) do
         {
@@ -114,16 +114,16 @@ RSpec.describe Api::V1::ContactsController, type: :request do
       end
     end
 
-    context 'when send invalid params' do
-      before { put "/contacts/#{sample.id}", params: { contact: { first_name: '' } } }
-
-      it { expect(response).to have_http_status(:unprocessable_entity) }
-    end
-
     context 'when sample not exists' do
-      before { put '/contacts/9999' }
+      before { put '/contacts/9999', params: { contact: { first_name: '' } }.to_json, headers: headers }
 
       it { expect(response).to have_http_status(:not_found) }
+    end
+
+    context 'when send invalid params' do
+      before { put "/contacts/#{sample.id}", params: { contact: { first_name: '' } }.to_json, headers: headers }
+
+      it { expect(response).to have_http_status(:unprocessable_entity) }
     end
   end
 
@@ -131,13 +131,13 @@ RSpec.describe Api::V1::ContactsController, type: :request do
     context 'when send valid params' do
       let!(:sample) { create(:contact) }
 
-      before { delete "/contacts/#{sample.id}" }
+      before { delete "/contacts/#{sample.id}", headers: headers }
 
       it { expect(response).to have_http_status(:no_content) }
     end
 
     context 'when sample not exists' do
-      before { delete '/contacts/9999' }
+      before { delete '/contacts/9999', headers: headers }
 
       it { expect(response).to have_http_status(:not_found) }
     end
