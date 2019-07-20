@@ -3,8 +3,7 @@
 module Api
   module V1
     module Concerns
-      # Json render helper
-      module Response
+      module Response # rubocop:disable Style/Documentation
         def json_response(object, status = :ok)
           render json: object, status: status
         end

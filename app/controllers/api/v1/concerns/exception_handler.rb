@@ -3,8 +3,7 @@
 module Api
   module V1
     module Concerns
-      # Errors responder
-      module ExceptionHandler
+      module ExceptionHandler # rubocop:disable Style/Documentation
         extend ActiveSupport::Concern
 
         class AuthenticationError < StandardError; end
