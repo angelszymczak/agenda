@@ -34,6 +34,7 @@ gem 'rack-cors'
 gem 'active_model_serializers'
 gem 'activeadmin'
 gem 'jwt'
+gem 'pagy'
 gem 'simple_command'
 gem 'telephone_number'
 

@@ -6,6 +6,7 @@ module Api
       include Concerns::Response
       include Concerns::ExceptionHandler
       include Concerns::Authorization
+      include Pagy::Backend
     end
   end
 end
