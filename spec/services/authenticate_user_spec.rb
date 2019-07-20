@@ -11,7 +11,7 @@ RSpec.describe AuthenticateUser do
 
       it { is_expected.to be_a(described_class) }
 
-      its(:result) { is_expected.to be_a(String) }
+      its(:result) { is_expected.not_to be_blank }
     end
 
     context 'when invalid credentials' do

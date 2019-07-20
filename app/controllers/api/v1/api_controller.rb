@@ -5,6 +5,7 @@ module Api
     class ApiController < ActionController::API # rubocop:disable Style/Documentation
       include Concerns::Response
       include Concerns::ExceptionHandler
+      include Concerns::Authorization
     end
   end
 end

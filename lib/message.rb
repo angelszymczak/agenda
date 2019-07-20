@@ -4,6 +4,10 @@
 # this an easier way to manage our application messages.
 class Message
   class << self
+    def account_created
+      'Account created successfully'
+    end
+
     def invalid_credentials
       'Invalid credentials'
     end
