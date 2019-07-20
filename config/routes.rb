@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   scope module: :api do
-    scope module: :v1 do
+    scope module: :v1, constraints: ApiVersion.new('v1', true) do
       resources :contacts do
         resources :activities, only: %i[index create update destroy]
       end
