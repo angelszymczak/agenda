@@ -9,7 +9,8 @@ Rails.application.routes.draw do
       end
 
       scope module: :auth do
-        post :signup, to: 'registration#create'
+        post :sign_up, to: 'registration#create'
+        post :sign_in, to: 'authentication#create'
       end
     end
   end

@@ -7,7 +7,7 @@ RSpec.describe Api::V1::Auth::RegistrationController, type: :request do
 
   describe 'POST /signup' do
     context 'when valid request' do
-      before { post '/signup', params: { user: attributes_for(:user) } }
+      before { post '/sign_up', params: { user: attributes_for(:user) } }
 
       it { expect(response).to have_http_status(:created) }
 
@@ -16,7 +16,7 @@ RSpec.describe Api::V1::Auth::RegistrationController, type: :request do
     end
 
     context 'when invalid request' do
-      before { post '/signup', params: { user: { email: '' } } }
+      before { post '/sign_up', params: { user: { email: '' } } }
 
       it { expect(response).to have_http_status(:unprocessable_entity) }
 
