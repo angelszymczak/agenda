@@ -4,7 +4,7 @@ module Api
   module V1
     class ContactsController < ApiController # rubocop:disable Style/Documentation
       def index
-        json_response(Contact.all)
+        json_response(pagy(Contact.all, page: request.query_parameters[:page])[1])
       end
 
       def create
