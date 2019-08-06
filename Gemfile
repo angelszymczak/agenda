@@ -33,15 +33,16 @@ gem 'rack-cors'
 
 gem 'active_model_serializers'
 gem 'activeadmin'
+gem 'devise'
 gem 'jwt'
 gem 'simple_command'
 gem 'telephone_number'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails', '~> 5.0'
   gem 'faker', '~> 1.9'
+  gem 'pry-byebug'
   gem 'rspec-rails', '~> 3.8'
 end
 
@@ -60,6 +61,3 @@ group :test do
   gem 'rubocop-rspec', '~> 1.33'
   gem 'shoulda-matchers', '~> 4.1'
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
